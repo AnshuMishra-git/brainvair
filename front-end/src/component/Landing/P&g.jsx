@@ -106,7 +106,8 @@ export default function Pg() {
             {resp == '' ? (<h1>Please Enter Data </h1>) : (
                 <div>
                     {resp.map((ele, ind) =>
-                        <li>{ele}</li>)}
+                        <li>{ele}</li>
+                    )}
                 </div>
             )}
         </div>

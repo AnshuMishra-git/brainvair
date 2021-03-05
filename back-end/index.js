@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Cards = require("./dbCards");
 const Fabonicci = require("./fabo");
 const PC = require("./pg");
 const cors = require("cors");
