@@ -21,7 +21,7 @@ mongoose.connect(connection_url, {
 
 // API Endpoints
 app.get("/", (req, res) => {
-  res.status(200).send("Hello World!");
+  res.status(200).send("Hello!");
 });
 
 function getAll(fabo) {
@@ -50,16 +50,17 @@ app.post("/fabo", (req, res) => {
     } else {
       res.status(200).json({
         success: true,
-        message: "Data Add Succesfully",
+        message: "Operation Succesfully Done",
         data: data,
         result: results,
       });
-      // res.status(201).send(data);
     }
   });
 });
 
 arr1 = [];
+
+// Logic for P&C
 function checkValue(data1, data2, data3) {
   for (let i = 0; i < data1.length; i++) {
     for (let j = 0; j < data2.length; j++) {
@@ -68,22 +69,19 @@ function checkValue(data1, data2, data3) {
       }
     }
   }
-  console.log("Arr", arr1);
   return arr1;
 }
 
 app.post("/pg", (req, res) => {
   const pc = req.body;
-
   const result = checkValue(pc.num, pc.num1, pc.num2);
-
   PC.create(pc, (err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {
       res.status(200).json({
         success: true,
-        message: "Data Add Succesfully",
+        message: "Operation Succesfully Done",
         data: data,
         result: result,
       });

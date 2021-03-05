@@ -12,7 +12,6 @@ export default function Fibonacci() {
     const [resp, setResp] = useState([]);
     const [fabo, setFabo] = useState([]);
     const { register, handleSubmit, errors } = useForm();
-    // const [change, setChange] = useState(['']);
 
 
     const authAxios = axios.create({
