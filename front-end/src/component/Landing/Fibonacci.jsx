@@ -5,9 +5,13 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export default function Fibonacci() {
+    let response = '';
     let form_data = {};
-    const [numbers, setnumbers] = useState("");
+    const [resp, setResp] = useState([])
+    const [fabo, setFabo] = useState([]);
     const { register, handleSubmit, errors } = useForm();
+    // const [change, setChange] = useState(['']);
+
 
     const authAxios = axios.create({
         baseURL: "http://localhost:8001",
@@ -15,17 +19,16 @@ export default function Fibonacci() {
 
     const onSubmit = (data) => {
         form_data = {
-            num: numbers,
+            num: fabo,
         };
-        console.log(form_data);
 
         authAxios.post("/fabo", form_data).then((res) => {
-            setnumbers(res.data.data.num);
-            // if (res.data.success === false) {
-            //     alert(res.data.errorMessage);
-            // } else if (res.data.success === true) {
-            //     window.location.reload(false);
-            // }
+            setResp(res.data.result);
+            if (res.data.success === false) {
+                alert(res.data.errorMessage);
+            } else if (res.data.success === true) {
+                // window.location.reload(true);
+            }
         });
     }
 
@@ -41,24 +44,29 @@ export default function Fibonacci() {
                     variant="outlined"
                     margin="normal"
                     required
-                    fullWidth
                     id="fab"
                     className="Logininput"
                     label="Fabonics Series"
                     name="fab"
                     placeholder="Enter Number"
-                    value={numbers}
+                    value={fabo}
                     autoFocus
                     onChange={(event) => {
-                        setnumbers(event.target.value);
+                        setFabo(event.target.value);
                     }}
                     ref={register({
                         required: "Required",
                     })}
                 />
-                <button className="btn btn-primary">Get Data</button>
+                <button className="btn btn-primary">Submit Number</button>
             </form>
+            {resp == '' ? (<h1>Please Enter Number and Submit </h1>) : (
+                <div>
+                    <h3>User Input: {fabo}</h3>
+                    {resp.map((ele, ind) =>
+                        <li>{ele}</li>)}
+                </div>
+            )}
         </div>
     )
-
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import Navigation from './Navigation'
+import "./Landing.css"
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -17,22 +18,23 @@ export default function Pg() {
         baseURL: "http://localhost:8001",
     });
 
+
     const onSubmit = (data) => {
         console.log("Button Calling", data)
         form_data = {
-            num: numbers,
-            num1: numbers1,
-            num2: numbers1
+            num: [numbers],
+            num1: [numbers1],
+            num2: [numbers2]
         };
         console.log(form_data);
-
-        authAxios.post("/user/me/update", form_data).then((res) => {
+        authAxios.post("/pg", form_data).then((res) => {
             console.log("res", res)
             console.log(res.data);
             if (res.data.success === false) {
                 alert(res.data.errorMessage);
             } else if (res.data.success === true) {
-                window.location.reload(false);
+                console.log("Returning True");
+                // window.location.reload(false);
             }
         });
     }
@@ -49,12 +51,11 @@ export default function Pg() {
                     variant="outlined"
                     margin="normal"
                     required
-                    fullWidth
                     id="fab"
                     className="Logininput"
                     label="Fabonics Series"
                     name="fab"
-                    placeholder="Enter Number"
+                    placeholder="Enter Comma Seprated Value"
                     value={numbers}
                     autoFocus
                     onChange={(event) => {
@@ -68,12 +69,11 @@ export default function Pg() {
                     variant="outlined"
                     margin="normal"
                     required
-                    fullWidth
                     id="fab"
                     className="Logininput"
                     label="Fabonics Series"
                     name="fab"
-                    placeholder="Enter Number"
+                    placeholder="Enter Comma Seprated Value"
                     value={numbers1}
                     autoFocus
                     onChange={(event) => {
@@ -87,12 +87,11 @@ export default function Pg() {
                     variant="outlined"
                     margin="normal"
                     required
-                    fullWidth
                     id="fab"
                     className="Logininput"
                     label="Fabonics Series"
                     name="fab"
-                    placeholder="Enter Number"
+                    placeholder="Enter Comma Seprated Value"
                     value={numbers2}
                     autoFocus
                     onChange={(event) => {
