@@ -5,7 +5,9 @@
 
 input {
   border: 1px solid #333;
-  width: 35%;
+  width: 18%;
   margin: 2px;
-  padding: 2px;
+  padding: 5px;
+  border-radius: 30px;
+  outline: none;
 }

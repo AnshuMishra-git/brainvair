@@ -13,7 +13,7 @@ export default function Navigation() {
 
                     <Form inline>
                         <Button as={Link} to="/" className="m-1" variant="outline-success">Fabonicci</Button>{' '}
-                        <Button as={Link} to="/pg" className="m-1" variant="outline-primary">pandC</Button>
+                        <Button as={Link} to="/pg" className="m-1" variant="outline-primary">P&C</Button>
                     </Form>
                 </Navbar.Collapse>
             </Navbar>

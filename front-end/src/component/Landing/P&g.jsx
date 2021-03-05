@@ -11,6 +11,7 @@ export default function Pg() {
     const [numbers, setnumbers] = useState("");
     const [numbers1, setnumbers1] = useState("");
     const [numbers2, setnumbers2] = useState("");
+    const [resp, setResp] = useState([]);
     const { register, handleSubmit, errors } = useForm();
 
 
@@ -28,13 +29,12 @@ export default function Pg() {
         };
         console.log(form_data);
         authAxios.post("/pg", form_data).then((res) => {
-            console.log("res", res)
-            console.log(res.data);
+            console.log("res", res.data.result)
+            setResp(res.data.result)
             if (res.data.success === false) {
                 alert(res.data.errorMessage);
             } else if (res.data.success === true) {
                 console.log("Returning True");
-                // window.location.reload(false);
             }
         });
     }
@@ -103,6 +103,12 @@ export default function Pg() {
                 /><br></br>
                 <button className="btn btn-primary">Get Data</button>
             </form>
+            {resp == '' ? (<h1>Please Enter Data </h1>) : (
+                <div>
+                    {resp.map((ele, ind) =>
+                        <li>{ele}</li>)}
+                </div>
+            )}
         </div>
     )
 }

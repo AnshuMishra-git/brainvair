@@ -3,11 +3,13 @@ import Navigation from './Navigation'
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import "./Landing.css"
+
 
 export default function Fibonacci() {
     let response = '';
     let form_data = {};
-    const [resp, setResp] = useState([])
+    const [resp, setResp] = useState([]);
     const [fabo, setFabo] = useState([]);
     const { register, handleSubmit, errors } = useForm();
     // const [change, setChange] = useState(['']);
@@ -57,7 +59,7 @@ export default function Fibonacci() {
                     ref={register({
                         required: "Required",
                     })}
-                />
+                /><br></br>
                 <button className="btn btn-primary">Submit Number</button>
             </form>
             {resp == '' ? (<h1>Please Enter Number and Submit </h1>) : (

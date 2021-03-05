@@ -33,14 +33,12 @@ function getAll(fabo) {
     nextTerm = 0;
   let arr = [];
 
-  console.log("In Fabo Function", fabo.num);
   while (t1 <= fabo.num) {
     arr.push(t1);
     nextTerm = t1 + t2;
     t1 = t2;
     t2 = nextTerm;
   }
-  console.log(arr);
   return arr;
 }
 
@@ -67,11 +65,11 @@ function checkValue(data1, data2, data3) {
   for (let i = 0; i < data1.length; i++) {
     for (let j = 0; j < data2.length; j++) {
       for (let k = 0; k < data3.length; k++) {
-        console.log(data1[i], data2[j], data3[k]);
         arr1.push(data1[i], data2[j], data3[k]);
       }
     }
   }
+  console.log("Arr", arr1);
   return arr1;
 }
 
